@@ -1,0 +1,169 @@
+body {
+    text-align: center;
+    font-family: Apple SD Gothic Neo, Arial, sans-serif;
+}
+
+.container {
+    margin-bottom: -20px;
+    height: 850px;
+}
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #231f20;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+}
+
+.header p.text_small {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+}
+
+#clothes_image_square_top {
+    width: 414px;
+    max-width: 414px;
+    height: 280px;
+    padding: auto;
+    margin: 50px auto 40px;
+    position: relative;
+    left: -15px;
+}
+
+#clothes_image_square_bottom {
+    width: 244px;
+    max-width: 244px;
+    height: 357px;
+    padding: auto;
+    margin: 60px auto 45px;
+    position: relative;
+    left: 10px;
+}
+
+.table-borderless > tbody > tr > td {
+    border: none;
+}
+
+
+th, td {
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: center;
+    color: #211f1f;
+}
+
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    vertical-align: middle;
+}
+
+tr {
+    height: 50px;
+}
+
+.table>thead>tr>td {
+    border-bottom: none;
+}
+
+tbody tr.selected_size td {
+    background-color: rgba(38, 165, 222, 0.07);
+    color: #26a9e0;
+    font-weight: normal;
+}
+
+tfoot tr.my_clothes td {
+    font-size: 14px;
+    text-align: center;
+    color: #26a9e0;
+    border-top: none;
+}
+
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #26a9e0;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border-bottom: #26a9e0 solid 1px;
+}
+
+.btn.btn-default.confirm {
+    width: 40px;
+    height: 25px;
+    padding: 3px 5px;
+    font-size: 12px;
+    background-color: #ffffff;
+    border: #26a9e0 1px solid;
+    color: #26a9e0;
+}
+
+tfoot tr.error_value td {
+    font-size: 18px;
+    background-color: #f4f5f6;
+    color: #f16522;
+    font-weight: bold;
+    border-top: none;
+}
+
+#ok_path {
+    width: 20%;
+}
+
+.clothes_size_name_top {
+    width: 16%;
+}
+
+.clothes_size_name_bottom {
+    width: 13.3%;
+}
+
+@media screen and (max-width: 600px) {
+
+    #ok_circle {
+        width: 10%;
+    }
+
+    .clothes_size_name {
+        width: 18%;
+    }
+
+    .clothes_size_name_bottom {
+        width: 15%;
+    }
+
+    tbody tr {
+        height: 40px;
+    }
+
+    img {
+        width: 80%;
+        height: auto;
+    }
+
+    td img {
+        width: 15px;
+    }
+    #clothes_image_square {
+        width: 100%;
+        margin-bottom: -10px;
+    }
+
+    #clothes_image_square_pant {
+        width: 100%;
+        margin-bottom: -10px;
+    }
+
+    tfoot tr.error_value td {
+        font-size: 14px;
+    }
+}
