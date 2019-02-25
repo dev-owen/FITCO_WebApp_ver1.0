@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <p>SIZE INFO</p>
+            <p class="text_big">SIZE INFO</p>
             <p class="text_small">(단위:cm)</p>
         </div>
         <div id="clothes_image_square_top"><img src="./img/top.png"></div>
@@ -69,14 +69,14 @@
                     <tr class="my_clothes">
                         <td><button class="btn btn-default confirm" onclick="sizeConfirm()">확인</button></td>
                         <td>내옷</td>
-                        <td><input type='number' id="biacromion_size" placeholder="cm" min="30" max="60"></td>
-                        <td><input type='number' id="chest_size" placeholder="cm" min="40" max="70"></td>
-                        <td><input type='number' id="armLength_size" placeholder="cm" min="50" max="80"></td>
-                        <td><input type='number' id="torso_size" placeholder="cm" min="60" max="90"></td>
+                        <td><input type='number' id="biacromion_size" placeholder="cm" min="0"></td>
+                        <td><input type='number' id="chest_size" placeholder="cm" min="0"></td>
+                        <td><input type='number' id="armLength_size" placeholder="cm" min="0"></td>
+                        <td><input type='number' id="torso_size" placeholder="cm" min="0"></td>
                     </tr>
                     <tr class="error_value">
                         <td></td>
-                        <td style="font-size: 14px;">오차</td>
+                        <td>오차</td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>

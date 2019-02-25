@@ -1,5 +1,24 @@
 
 iframe.size_compare_iframe {
+    width: 100%;
     border-width: 0;
     overflow: hidden;
+}
+
+iframe.size_compare_iframe.top {
+    height: 880px;
+}
+
+iframe.size_compare_iframe.bottom {
+    height: 970px;
+}
+
+@media screen and (max-width: 600px) {
+    iframe.size_compare_iframe.top {
+        height: 700px;
+    }
+
+    iframe.size_compare_iframe.bottom {
+        height: 790px;
+    }
 }

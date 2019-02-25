@@ -1,5 +1,5 @@
 // cafe24 FITCO WebApp module version 1.0
-// 2019 Feb 15th
+// 2019 Feb 25th
 
 // Top, Bottom 분류하는 변수
 var bigCategory = "", midCategory = "";
@@ -8,19 +8,13 @@ var bigCategory = "", midCategory = "";
 
 var fitco = function () {
     // 상품 상세정보에 추가할 서비스 소개 이미지&모듈
-    $("#prdDetail > div > p").after("<img src='https://jgyuity.cafe24.com/cafe24/jpg/demo_image2.jpg'>");
-    if(bigCategory.includes('Bottoms') && midCategory.includes('Pants')) { // 바지일 경우
-        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompareBottom.html' width='100%' height='920px'></iframe></div>");
-        $("#prdDetail > div > p").after("<img src='https://jgyuity.cafe24.com/cafe24/jpg/pants_demo.jpg'>");
-    } else if(midCategory.includes('Shirts')) { // 셔츠일 경우
-        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompare.html' width='100%' height='850px'></iframe></div>");
-        $("#prdDetail > div > p").after("<img src='https://jgyuity.cafe24.com/cafe24/jpg/shirts_demo.jpg'>");
-    } else if(bigCategory.includes('Tops')) { // 니트일 경우
-        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompare.html' width='100%' height='850px'></iframe></div>");
-        $("#prdDetail > div > p").after("<img src='https://jgyuity.cafe24.com/cafe24/jpg/knit_demo.jpg'>");
+    if(bigCategory.includes('Bottoms')) { // 하의일 경우
+        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe top' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompareBottom.html' width='100%'></iframe></div>");
+    } else if(bigCategory.includes('Tops')) { // 상의일 경우
+        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe bottom' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompareTop.html' width='100%'></iframe></div>");
     }
-    $("#prdDetail > div > p").after("<img src='https://jgyuity.cafe24.com/cafe24/jpg/demo_image1.jpg'>");
 };
+
 
 if (document.readyState == 'complete') {
     try {

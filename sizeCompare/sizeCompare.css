@@ -1,11 +1,16 @@
 body {
+    width: 100%;
     text-align: center;
-    font-family: Apple SD Gothic Neo, Arial, sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .container {
     margin-bottom: -20px;
-    height: 850px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
 }
 
 .header {
@@ -15,11 +20,25 @@ body {
     font-style: normal;
     font-stretch: normal;
     color: #231f20;
-    letter-spacing: 0.5px;
-    font-size: 18px;
 }
 
-.header p.text_small {
+p {
+    font-weight: 100;
+    font-style: normal;
+    font-stretch: normal;
+    color: #231f20;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+p.text_big {
+    font-size: 28px;
+    font-weight: 400;
+    color: #26a9e0;
+}
+
+p.text_small {
     font-size: 10px;
     letter-spacing: 0.3px;
 }
@@ -50,40 +69,51 @@ body {
 
 
 th, td {
-    text-align: center;
-    font-size: 14px;
-    font-weight: normal;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 100;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.2;
     letter-spacing: normal;
-    text-align: center;
     color: #211f1f;
 }
 
-.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+.table>thead>tr>th, .table>tbody>tr>td, .table>tfoot>tr>td {
     vertical-align: middle;
+    padding-left: 20px;
+}
+
+.table>tbody>tr>td:nth-child(1), .table>tfoot>tr>td:nth-child(1) {
+    padding-left: 8px;
 }
 
 tr {
-    height: 50px;
+    height: 60px;
 }
 
 .table>thead>tr>td {
     border-bottom: none;
 }
 
+tr td:nth-child(1) {
+    text-align: center;
+    width: 15px;
+    margin-left: 0;
+}
+
 tbody tr.selected_size td {
     background-color: rgba(38, 165, 222, 0.07);
     color: #26a9e0;
-    font-weight: normal;
+    font-weight: 400;
+
 }
 
 tfoot tr.my_clothes td {
-    font-size: 14px;
-    text-align: center;
+    font-size: 18px;
     color: #26a9e0;
     border-top: none;
+    font-weight: 700;
 }
 
 input {
@@ -93,17 +123,17 @@ input {
     color: #26a9e0;
     width: 50px;
     height: 30px;
-    text-align: center;
+    text-align: left;
     border-bottom: #26a9e0 solid 1px;
 }
 
 .btn.btn-default.confirm {
-    width: 40px;
-    height: 25px;
-    padding: 3px 5px;
-    font-size: 12px;
+    width: 60px;
+    height: 40px;
+    padding: 5px 8px;
+    font-size: 16px;
     background-color: #ffffff;
-    border: #26a9e0 1px solid;
+    border: #26a9e0 2px solid;
     color: #26a9e0;
 }
 
@@ -111,7 +141,7 @@ tfoot tr.error_value td {
     font-size: 18px;
     background-color: #f4f5f6;
     color: #f16522;
-    font-weight: bold;
+    font-weight: 700;
     border-top: none;
 }
 
@@ -127,18 +157,58 @@ tfoot tr.error_value td {
     width: 13.3%;
 }
 
+@media screen and (max-width: 490px) {
+
+    .table>thead>tr>td, .table>thead>tr>th, .table>tbody>tr>td, .table>tfoot>tr>td {
+        padding: 2px;
+    }
+
+    .table>thead>tr>th, .table>tbody>tr>td, .table>tfoot>tr>td {
+        padding-left: 8px;
+    }
+
+    .table>tbody>tr>td:nth-child(1), .table>tfoot>tr>td:nth-child(1) {
+        padding-left: 2px;
+    }
+
+    input {
+        width: 40px;
+        height: 20px;
+    }
+
+    .btn.btn-default.confirm {
+        width: 40px;
+        height: 25px;
+        padding: 3px 5px;
+        font-size: 12px;
+        border: #26a9e0 1px solid;
+    }
+
+    .table>thead>tr>th {
+        font-size: 12px;
+    }
+}
+
 @media screen and (max-width: 600px) {
 
-    #ok_circle {
-        width: 10%;
+    th, td, tfoot tr.my_clothes td, tfoot tr.error_value td {
+        font-size: 14px;
+    }
+
+    #ok_path {
+        width: 16%;
     }
 
     .clothes_size_name {
-        width: 18%;
+        width: 17%;
+    }
+
+    .clothes_size_name:last-child {
+        width: 16%;
     }
 
     .clothes_size_name_bottom {
-        width: 15%;
+        width: 14%;
     }
 
     tbody tr {
@@ -153,12 +223,12 @@ tfoot tr.error_value td {
     td img {
         width: 15px;
     }
-    #clothes_image_square {
+    #clothes_image_square_top {
         width: 100%;
         margin-bottom: -10px;
     }
 
-    #clothes_image_square_pant {
+    #clothes_image_square_bottom {
         width: 100%;
         margin-bottom: -10px;
     }
@@ -166,4 +236,23 @@ tfoot tr.error_value td {
     tfoot tr.error_value td {
         font-size: 14px;
     }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 992px;
+    }
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: lightgray;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: lightgray;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: lightgray;
 }
