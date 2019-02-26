@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>핏코 관리자 페이지</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<style>
+    body {
+        width: 100%;
+        text-align: left;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px;
+    }
+
+    header, section {
+        margin-bottom: 50px;
+    }
+
+    h2,h3,h4 {
+        margin: 20px 0;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <header>
+            <h2>FITCO</h2>
+            <h4>핏코를 통해 자신이 가지고 있는 옷과 손쉽게 사이즈를 비교할 수 있습니다.</h4>
+        </header>
+        <section>
+            <h3>1.핏코 앱 활성화하기</h3>
+            <h4>현재 핏코 앱이 <span id="activate">비활성화</span> 상태입니다.</h4>
+            <h4>앱을 활성화 하신 후, 쇼핑몰 화면을 새로고침 해주세요.</h4>
+            <input id="toggle-event" type="checkbox" data-toggle="toggle">
+        </section>
+        <section>
+            <h3>2.핏코 앱 위치 설정하기</h3>
+            <h4>핏코 앱은 활성화 될 경우 상품 상세페이지 가장 하단부에 자동으로 위치하게 됩니다.</h4>
+            <h4>앱의 위치 설정은 추후 업데이트에서 가능할 예정이므로 조금만 기다려 주시면 감사하겠습니다.</h4>
+        </section>
+    </div>
+</body>
+<script>
+    $(function() {
+        $('#toggle-event').change(function() {
+            if($(this).prop('checked')) {
+                $('span#activate').html('활성화');
+                sendToServer(true);
+            } else {
+                $('span#activate').html('비활성화');
+                sendToServer(false);
+            }
+        });
+    });
+
+    var sendToServer = function (tf) {
+        // 관리자 페이지에서 서버로 mall_id, activated 값 전송
+        $.ajax ({
+            type: 'POST',
+            url: '',
+            data: {
+                mall_id: 'brummieowen',
+                activated: tf
+            },
+            dataType: 'JSON',
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
+</script>
+</html>
