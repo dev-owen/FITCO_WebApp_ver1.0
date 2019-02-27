@@ -48,6 +48,20 @@
     </div>
 </body>
 <script>
+    var url = "";
+    $(document).ready(function() {
+        var urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.get('user_id') !== null) {
+                var user_id = urlParams.get('user_id');
+                codeRequest(user_id);
+                console.log(url);
+                location.href = url;                
+            } else if(urlParams.get('code') !== null) {
+                var code = urlParams.get('code');
+                tokenRequest(code);
+            }
+    })
+
     $(function() {
         $('#toggle-event').change(function() {
             if($(this).prop('checked')) {
@@ -64,16 +78,55 @@
         // 관리자 페이지에서 서버로 mall_id, activated 값 전송
         $.ajax ({
             type: 'POST',
-            url: '',
+            url: 'https://tomorrancetestserver.azurewebsites.net/web/activateJavascriptModule',
             data: {
                 mall_id: 'brummieowen',
-                activated: tf
+                activated: tf ? 1 : 0
             },
             dataType: 'JSON',
             success: function (res) {
                 console.log(res);
             }
         })
+    }
+    
+    var codeRequest = function (user_id) {
+        var mall_id = user_id;
+        var auth_code_receive_url = 'https://jgyuity.cafe24.com/fitco/html/fitcoManager.html';
+        var client_id = 'IuFeyYTufEhbiXGby9XESH';
+        var scope = 'mall.read_product,mall.write_product,mall.read_category,mall.write_category';
+        url = 'https://'+mall_id+'.cafe24api.com/api/v2/oauth/authorize?response_type=code&client_id='+client_id+'&redirect_uri='+auth_code_receive_url+'&scope='+scope;
+        localStorage.setItem('mall_id',mall_id);
+    }
+
+    var tokenRequest = function (code) {
+        var mall_id = localStorage.getItem('mall_id');
+        var username = 'IuFeyYTufEhbiXGby9XESH';
+        var password = 'AHAKnaW1JBdgocqZVnM0HB';
+        var encode = window.btoa(username+':'+password);
+
+        console.log(encode);
+        console.log(mall_id);
+        $.ajax({
+            type: 'POST',
+            beforeSend: function(req) {
+                req.setRequestHeader('Authorization', 'Basic '+encode);
+                req.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+            },
+            dataType: 'jsonp',
+            data: {
+                grant_type: 'authorization_code',
+                code: code,
+                redirect_uri: 'https://jgyuity.cafe24.com/fitco/html/fitcoManager.html'    
+            },
+            url: 'https://'+mall_id+'.cafe24api.com/api/v2/oauth/token',
+            success: function(res) {
+                console.log(res);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
     }
 </script>
 </html>
