@@ -26,10 +26,10 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($param));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-$result = curl_exec($ch);
+$result = curl_exec($ch); // curl 요청 -> curl 응답 부분을 체크해야 함
 $result = json_decode($result,true);
 print_r($result);
-echo $result;
+echo $result; // $_GET 을 $_REQUEST로 바꾸어서 한 번 해볼 것
 curl_close($ch);
 
 ?>
