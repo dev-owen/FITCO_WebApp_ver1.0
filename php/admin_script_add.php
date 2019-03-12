@@ -1,16 +1,19 @@
 <?
-$access_token = '4AAqBaZFHVAgoGolVcYBEA';
 
-$url = 'https://brummieowen.cafe24api.com/api/v2/admin/scripttags';
+$access_token = $_REQUEST['access_token'];
+$mall_id = $_REQUEST['mall_id'];
+
+$url = 'https://'.$mall_id.'.cafe24api.com/api/v2/admin/scripttags';
 
 $header = array( 'Content-Type: application/json', 'Authorization: Bearer '. $access_token );
-
+echo $access_token;
+echo $mall_id;
 
 
 $param = array (
   "shop_no" => 1,
   "request" => array (
-		"client_id" => "Tfrj19ZXMKoPPW3ndxigAD",
+		"client_id" => "IdZJS2JTKhxllIZnMpOGbA",
 		"src" => "https://jgyuity.cafe24.com/fitco/js/script.js",
 		"display_location" => array(
 			"PRODUCT_DETAIL"
@@ -19,7 +22,6 @@ $param = array (
 );
 
 print_r($param);
-echo "<br><br>";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -35,6 +37,7 @@ $result = curl_exec($ch);
 $result = json_decode($result,true);
 print_r($result);
 curl_close($ch);
+
 
 /*
 $mallId = 'sunbitelapitf';

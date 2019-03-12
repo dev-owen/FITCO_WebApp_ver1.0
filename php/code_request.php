@@ -3,9 +3,9 @@ $parts = parse_url($url);
 parse_str($parts['query'], $query);
 
 $sMallID = 'FITCO';
-$sClientID = 'Tfrj19ZXMKoPPW3ndxigAD';
+$sClientID = 'IdZJS2JTKhxllIZnMpOGbA';
 $sAuthCodeReceiveUrl = 'https://brummieowen.cafe24.com';
-$sScope = 'mall.read_product,mall.write_product,mall.read_category,mall.write_category';
+$sScope = 'mall.read_product,mall.read_category,mall.read_store';
 $aState = array(
     'mall_id'    => $sMallID,
 );
