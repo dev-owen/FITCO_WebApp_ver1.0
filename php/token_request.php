@@ -13,7 +13,6 @@ $param = array(
     ,'code'   => $code
     ,'redirect_uri' => 'https://jgyuity.cafe24.com/fitco/php/token_response.php'
 );
-//test
 $header = array( 
     'Content-Type: application/x-www-form-urlencoded', 
     'Authorization: Basic '. base64_encode($username.":".$password) 
