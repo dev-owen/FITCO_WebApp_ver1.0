@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://jgyuity.cafe24.com/fitco/js/appStore.js"></script>
 <style>
     body {
         width: 100%;
@@ -36,9 +37,9 @@
         </header>
         <section>
             <h3>1.핏코 앱 활성화하기</h3>
-            <h4>현재 핏코 앱이 <span id="activate">비활성화</span> 상태입니다.</h4>
+            <h4>현재 핏코 앱이 <span id="activate">활성화</span> 상태입니다.</h4>
             <h4>앱을 활성화 하신 후, 쇼핑몰 화면을 새로고침 해주세요.</h4>
-            <input id="toggle-event" type="checkbox" data-toggle="toggle">
+            <input id="toggle-event" type="checkbox" data-toggle="toggle" checked>
         </section>
         <section>
             <h3>2.핏코 앱 위치 설정하기</h3>
@@ -47,94 +48,4 @@
         </section>
     </div>
 </body>
-<script>
-    var url = "";
-    $(document).ready(function() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var access_token = "";
-            if(urlParams.get('user_id') !== null) {
-                var user_id = urlParams.get('user_id');
-                codeRequest(user_id);
-                console.log(url);
-                location.href = url;                
-            } else if(urlParams.get('code') !== null) {
-                var code = urlParams.get('code');
-                tokenRequest(code);
-            }
-    })
-
-    $(function() {
-        $('#toggle-event').change(function() {
-            if($(this).prop('checked')) {
-                $('span#activate').html('활성화');
-                sendToServer(true);
-            } else {
-                $('span#activate').html('비활성화');
-                sendToServer(false);
-            }
-        });
-    });
-
-    var sendToServer = function (tf) {
-        // 관리자 페이지에서 서버로 mall_id, activated 값 전송
-        $.ajax ({
-            type: 'POST',
-            url: 'https://tomorrancetestserver.azurewebsites.net/web/activateJavascriptModule',
-            data: {
-                mall_id: 'brummieowen',
-                activated: tf ? 1 : 0
-            },
-            dataType: 'JSON',
-            success: function (res) {
-                console.log(res);
-            }
-        })
-    }
-    
-    var codeRequest = function (user_id) {
-        var mall_id = user_id;
-        var auth_code_receive_url = 'https://jgyuity.cafe24.com/fitco/html/fitcoManager.html';
-        var client_id = 'IdZJS2JTKhxllIZnMpOGbA';
-        var scope = 'mall.read_product,mall.read_category,mall.read_store';
-        url = 'https://'+mall_id+'.cafe24api.com/api/v2/oauth/authorize?response_type=code&client_id='+client_id+'&redirect_uri='+auth_code_receive_url+'&scope='+scope;
-        localStorage.setItem('mall_id',mall_id);
-    }
-
-    var tokenRequest = function (code) {
-        var mall_id = localStorage.getItem('mall_id');
-
-        console.log('code : '+code);
-        console.log('mall_id : '+mall_id);
-        $.ajax({
-            type: 'POST',
-            data: 'code='+code+'&mall_id='+mall_id,
-            url: 'https://jgyuity.cafe24.com/fitco/php/token_request.php',
-            success: function(res) {
-                access_token = res;
-                scriptAdd(access_token);
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    }
-
-    var scriptAdd = function (access_token) {
-        // 가져와야 하는 변수 access_token, mall_id
-        console.log('access_token : '+access_token);
-        var mall_id = localStorage.getItem('mall_id');
-        console.log('mall_id : '+mall_id);
-        $.ajax({
-            type: 'POST',
-            data: 'access_token='+access_token+'&mall_id='+mall_id,
-            url: 'https://jgyuity.cafe24.com/fitco/php/admin_script_add.php',
-            success: function(res) {
-                console.log(res);
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    }
-</script>
 </html>

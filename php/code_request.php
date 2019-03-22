@@ -5,7 +5,7 @@ parse_str($parts['query'], $query);
 $sMallID = 'FITCO';
 $sClientID = 'IdZJS2JTKhxllIZnMpOGbA';
 $sAuthCodeReceiveUrl = 'https://brummieowen.cafe24.com';
-$sScope = 'mall.read_product,mall.read_category,mall.read_store';
+$sScope = 'mall.read_application,mall_write_application,mall.read_product,mall.read_category,mall.read_store';
 $aState = array(
     'mall_id'    => $sMallID,
 );

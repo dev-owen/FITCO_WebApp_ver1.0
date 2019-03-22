@@ -9,28 +9,36 @@ var bigCategory = "", midCategory = "";
 var fitco = function () {
     // 상품 상세정보에 추가할 서비스 소개 이미지&모듈
     if(bigCategory.includes('Bottoms')) { // 하의일 경우
-        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe top' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompareBottom.html' width='100%'></iframe></div>");
-    } else if(bigCategory.includes('Tops')) { // 상의일 경우
-        $("#prdDetail > div > p").after("<div id='myFrame'><iframe class='size_compare_iframe bottom' src='https://jgyuity.cafe24.com/cafe24/html/sizeCompareTop.html' width='100%'></iframe></div>");
+        $("#prdDetail > div:last-child").after("<div id='myFrame'><iframe class='size_compare_iframe bottom' src='https://jgyuity.cafe24.com/fitco/sizeCompare/sizeCompareBottom.html' width='100%'></iframe></div>");
+    } else if(bigCategory.includes('Tops') || bigCategory.includes('Outer')) { // 상의일 경우
+        console.log('It works');
+        $("#prdDetail > div:last-child").after("<div id='myFrame'><iframe class='size_compare_iframe top' src='https://jgyuity.cafe24.com/fitco/sizeCompare/sizeCompareTop.html' width='100%'></iframe></div>");
     }
 };
 
+var getMeta = function() {
+    var metas = document.getElementsByTagName('meta');
+    for(var i=0; i<metas.length; i++) {
+        if(metas[i].getAttribute('name') === 'keywords') {
+            console.log(metas[i].getAttribute('content'));
+            return metas[i].getAttribute('content');
+        }
+    }
+    return '';
+}
 
 if (document.readyState == 'complete') {
     try {
         bigCategory = $(".xans-product-headcategory li")[1].innerText; // Tops,Bottoms,Outerwear 구분
-        midCategory = $(".xans-product-headcategory li")[2].innerText; // Shirts,Tee,Pants,Skirts ... 구분
+        //console.log('bigCategory: '+bigCategory);
     } catch (e) {
-        // 모바일 header 이미지 대응
-        // $("#topArea div h1").html('<a href="/"><img src="https://jgyuity.cafe24.com/cafe24/jpg/page_top.jpg" width="100%" height="100%">');
-        var tmp = $("#contents div h1")[0].innerText;
-        if(tmp.includes('니트')) {
+        console.log(e);
+        var tmp = getMeta();
+        //console.log(tmp);
+        if(tmp.includes('Tops') || tmp.includes('Shirts') || tmp.includes('Outer')) {
             bigCategory = "Tops";
-        } else if(tmp.includes('셔츠')) {
-            midCategory = "Shirts";
-        } else if(tmp.includes('바지')) {
+        } else if(tmp.includes('Bottoms') || tmp.includes('Pants')) {
             bigCategory = "Bottoms";
-            midCategory = "Pants"
         }
     }
     fitco();
@@ -43,6 +51,6 @@ if (document.readyState == 'complete') {
 document.querySelector('meta').setAttribute('name','viewport');
 document.querySelector('meta').setAttribute('content','width=device-width, initial-scale=1.0');
 $('head').append('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">');
-$('head').append('<link rel="stylesheet" href="https://jgyuity.cafe24.com/cafe24/css/style.css">');
+$('head').append('<link rel="stylesheet" href="https://jgyuity.cafe24.com/fitco/css/style.css">');
 $('body').append('<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8" crossorigin="anonymous"></script>')
 $('body').append('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>');

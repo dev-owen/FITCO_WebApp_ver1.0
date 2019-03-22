@@ -6,8 +6,6 @@ $mall_id = $_REQUEST['mall_id'];
 $url = 'https://'.$mall_id.'.cafe24api.com/api/v2/admin/scripttags';
 
 $header = array( 'Content-Type: application/json', 'Authorization: Bearer '. $access_token );
-echo $access_token;
-echo $mall_id;
 
 
 $param = array (
@@ -21,7 +19,7 @@ $param = array (
    )
 );
 
-print_r($param);
+//print_r($param);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -35,7 +33,12 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 $result = curl_exec($ch);
 $result = json_decode($result,true);
-print_r($result);
+// print_r($result);
+if(empty($result['scripttag'])) {
+  echo $result['error']['more_info']['script_no'];
+} else {
+  echo $result['scripttag']['script_no'];
+}
 curl_close($ch);
 
 
